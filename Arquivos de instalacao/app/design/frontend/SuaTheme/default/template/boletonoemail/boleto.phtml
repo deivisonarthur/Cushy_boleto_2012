@@ -1,0 +1,5 @@
+<?php if($this->getData('order')->getPayment()->getMethod()=='boleto_bancario') { 
+echo "<a href=\"" . $this->getUrl('boleto/standard/view/order_id/' .
+$this->getData('order')->getId()) . "\" class=\"link-cart\" onclick=\"this.target='_blank'\">" . $this->__('Imprimir Boleto') . "</a>";
+}
+?>

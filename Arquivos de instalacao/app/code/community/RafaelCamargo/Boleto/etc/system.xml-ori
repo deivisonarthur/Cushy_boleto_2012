@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Short description
+ *
+ * Long description
+ *
+ * Baseado no módulo original Cushy_Boleto de Renan Gonçalves <renan.saddam@gmail.com>
+ * Copyright 2012, Rafael Camargo <desbloqueio@terra.com.br>
+ * Licensed under The MIT License
+ * Redistributions of files must retain the copyright notice.
+ *
+ * @copyright       Copyright 2012, Rafael Camargo 
+ * @category        Boleto_Rafael
+ * @package         RafaelCamargo_Boleto
+ * @license         http://www.opensource.org/licenses/mit-license.php The MIT License
+ */ 
+-->
+<config>
+	<sections>
+		<payment>
+			<groups>
+				<boleto_bancario translate="label" module="paygate">
+					<label>Boleto Bancário</label>
+					<sort_order>670</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					 <comment>
+                        <![CDATA[
+                        <div>
+                            Versão: 1.0.0<br />
+                            Desenvolvido por <strong>Rafael Camargo Rodrigues</strong> (<a href="mailto:desbloqueio@terra.com.br">desbloqueio@terra.com.br</a>)<br />
+                            <br /><br /><hr />
+                        </div>
+                        ]]>
+                    </comment>
+					<fields>
+						<active translate="label">
+							<label>Enabled</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>Deseja habilitar o módulo de boleto?</comment>
+						</active>
+						<banconome translate="label">
+							<label>Nome do Banco</label>
+							<frontend_type>select</frontend_type>
+                            <source_model>RafaelCamargo_Boleto_Model_banco</source_model>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>Escolha o banco pelo qual você emite boleto</comment>
+						</banconome>
+						<title translate="label">
+							<label>Title</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>Título que deseja que apareça na tela do cliente</comment>
+						</title>
+						<sort_order translate="label">
+						    <label>Ordem de exibição do módulo</label>
+						    <frontend_type>text</frontend_type>
+						    <sort_order>4</sort_order>
+						    <show_in_default>1</show_in_default>
+						    <show_in_website>1</show_in_website>
+						    <show_in_store>0</show_in_store>
+							<comment>Ordem que você deseja que o módulo de boleto apareça para seu cliente, exemplo: 1, 3, 7 e etc</comment>
+						</sort_order>
+						<order_status translate="label">
+							<label>Status dos novos pedidos</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_order_status_new</source_model>
+					  		<sort_order>5</sort_order>
+					  		<show_in_default>1</show_in_default>
+					  		<show_in_website>1</show_in_website>
+					  		<show_in_store>0</show_in_store>
+							<comment>O Status para os novos pedidos utilizando esse módulo, mesmo status que ativa segunda via para o cliente e para o Admin</comment>
+				      	</order_status>
+						<vencimento translate="label">
+							<label>Vencimento (em dias)</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>Preencha quantos dias deseja para o vencimento do boleto (Ex: 5)</comment>
+						</vencimento>
+						<valor_adicional translate="label">
+							<label>Cobrar valor adicional pelo boleto?</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>7</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>Atenção: Apesar de ser uma pratica comum, lembre-se que é ilegal a cobrança de taxa adicional pelo boleto, (EX: Se quiser adição de R$2,00 coloque 2.00</comment>
+						</valor_adicional>
+						<instrucoes_boleto translate="label">
+							<label>Instruções</label>
+							<frontend_type>textarea</frontend_type>
+							<sort_order>8</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>Preencha com as instruções que deseja que apareça no boleto (máximo de quatro linhas)</comment>
+						</instrucoes_boleto>
+						<informacoes translate="label">
+							<label>Informações do Demonstrativo</label>
+							<frontend_type>textarea</frontend_type>
+							<sort_order>9</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>Preencha com as informações extras que deseja que apareça no boleto (máximo de três linhas)</comment>
+						</informacoes>
+						<identificacao translate="label">
+							<label>Identificacão</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>Coloque algum texto de seu desejo para identificar no boleto, esse texto ficará acima do seu endereço</comment>
+							</identificacao>
+					   <cedente translate="label">
+							<label>Cedente</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>11</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>Razão social da empresa.</comment>
+						</cedente>
+						<cpf_cnpj translate="label">
+							<label>CPF / CNPJ Cedente</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>12</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>Preencha o CNPJ do cedente. (ex. 11.590.751/0001-99)</comment>
+						</cpf_cnpj>
+						<agencia translate="label">
+							<label>Nº da Agência</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>13</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>Número da agência, coloque apenas números, não coloque o dígito. (Exemplo: 6105-6 Coloque:6105) </comment>
+						</agencia>
+						<agencia_dv translate="label">
+							<label>Digito Verificador da agência</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>14</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>Digito verificador da agência, caso tenha, apenas números. (Exemplo: sua Ag: 6105-6 Coloque: 6) </comment>
+						</agencia_dv>
+						<conta translate="label">
+							<label>Nº Conta</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>15</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>Número da conta Cedente, coloque apenas números sem o dígito.(Exemplo: C/C 03646-9 Coloque:03646)</comment>
+						</conta>
+						<conta_dv translate="label">
+							<label>Nº do Digito Verificador</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>16</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>Digito verificador do Número da conta Cedente, coloque apenas números. Exemplo: C/C 03646-9 Coloque:9)</comment>
+						</conta_dv>
+						<carteira translate="label">
+							<label>Carteira</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>17</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>Número da carteira, consulte o seu banco pelo número ou código da cobrança sem registro.EX: (102, SR, 157)</comment>
+						</carteira>
+						<endereco translate="label">
+							<label>Endereço Cedente</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>18</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>Endereço do cedente.</comment>
+						</endereco>
+						<cidade_uf translate="label">
+							<label>Cidade e UF Cedente</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>19</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>Coloque a cidade e a UF do cedente (Ex: São Paulo / SP)<![CDATA[      
+						<br />
+						<br />
+						<br />
+						<hr />
+                            <div style="font-size:12px; color:#FF0000"<strong>DADOS OPCIONAIS DE ACORDO C/ O BANCO OU CLIENTE</strong></div><hr />
+                        ]]></comment>
+						</cidade_uf>
+						<especie translate="label">
+							<label>Espécie</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>OPCIONAL - Espécie da moeda geralmente R$ </comment>
+						</especie>
+						<especie_doc translate="label">
+							<label>Espécie de documento</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>21</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>OPCIONAL - Espécie de documento (Ex: DM - Puplicata Mercantil) </comment>
+						</especie_doc>
+						<aceite translate="label">
+							<label>Aceite</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>22</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>OPCIONAL - Indicando se o comprador  'aceitou'  o título geralmente N  </comment>
+						</aceite>
+						<quantidade translate="label">
+							<label>Quantidade</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>23</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>OPCIONAL - Caso deseje preencha o campo quantidade de acordo com as normas do seu banco<![CDATA[      
+						<br />
+						<br />
+						<br />
+						<hr />
+                            <div style="font-size:12px; color:#FF0000"<strong>DADOS PERSONALIZADOS - SANTANDER</strong></div><hr />
+                        ]]> </comment>
+						</quantidade>
+						<ponto_venda translate="label">
+							<label>Nº Ponto Venda ( Agência )</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>24</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>SANTANDER - Número do ponto de venda é o mesmo número da agência.</comment>
+						</ponto_venda>
+						<carteira_descricao translate="label">
+							<label>Descrição da Carteira</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>25</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>Descrição da carteira, consulte o modelo do seu banco (Ex. 102 - COBRANÇA SIMPLES).</comment>
+						</carteira_descricao>
+						<codigo_cliente translate="label">
+							<label>Código do Cliente (PSK) (7 digitos)</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>26</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>SANTANDER - Código do cliente PSK, são somente 7 digitos.<![CDATA[      
+						<br />
+						<br />
+						<br />
+						<hr />
+                            <div style="font-size:12px; color:#FF0000"<strong>DADOS PERSONALIZADOS - BRADESCO</strong></div><hr />
+                        ]]></comment>
+						</codigo_cliente>
+						<conta_cedente translate="label">
+							<label>Nº Conta Cedente</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>27</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>BRADESCO - Conta Cedente do Cliente, sem digito (Somente Números).</comment>
+						</conta_cedente>
+						<conta_cedente_dv translate="label">
+							<label>Dígito verificado Conta Cedente</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>28</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>BRADESCO - Digito da Conta Cedente do Cliente.<![CDATA[      
+						<br />
+						<br />
+						<br />
+						<hr />
+                            <div style="font-size:12px; color:#FF0000"<strong>DADOS PERSONALIZADOS - CAIXA ECONÔMICA FEDERAL NORMAL E SINCO</strong></div><hr />
+                        ]]></comment>
+						</conta_cedente_dv>
+						<conta_cedente_caixa translate="label">
+							<label>Nº Conta Cedente</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>29</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>CEF - Conta Cedente do Cliente, sem digito (Somente Números).</comment>
+						</conta_cedente_caixa>
+						<conta_cedente_dv_caixa translate="label">
+							<label>Dígito verificador Conta Cedente</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>CEF - Digito da Conta Cedente do Cliente.</comment>
+						</conta_cedente_dv_caixa>
+						<inicio_nosso_numero translate="label">
+							<label>Inicio do Nosso número</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>31</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>CEF - Carteira SR: 80, 81 ou 82  -  Carteira CR: 90 (Confirmar com gerente qual usar), Padrão Sinco obrigatoriamente deve começar com 9.<![CDATA[      
+						<br />
+						<br />
+						<br />
+						<hr />
+                            <div style="font-size:12px; color:#FF0000"<strong>DADOS PERSONALIZADOS - BANCO DO BRASIL</strong></div><hr />
+                        ]]></comment>
+						</inicio_nosso_numero>
+						<convenio translate="label">
+							<label>Número do Convênio</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>32</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>BB -  Número do convênio - REGRA: 6, 7 ou 8 dígitos.</comment>
+						</convenio>
+						<contrato translate="label">
+							<label>Número do Contrato</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>33</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>BB -  Número do seu contrato.</comment>
+						</contrato>
+						<variacao_carteira translate="label">
+							<label>Variação da Carteira</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>34</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>BB - Variação da Carteira, com traço Ex "-019" (opcional).</comment>
+						</variacao_carteira>
+						<formatacao_convenio translate="label">
+							<label>Formatação Convênio</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>35</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>BB - REGRA: 8 p/ Convênio c/ 8 dígitos, 7 p/ Convênio c/ 7 dígitos, ou 6 se Convênio c/ 6 dígitos.</comment>
+						</formatacao_convenio>
+						<formatacao_nosso_numero translate="label">
+							<label>Formatação Nosso Número</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>36</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>BB - REGRA: Usado apenas p/ Convênio c/ 6 dígitos: informe 1 se for Nosso Número de até 5 dígitos ou 2 para opção de até 17 dígitos<![CDATA[      
+						<br />
+						<br />
+						<br />
+						<hr />
+                            <div style="font-size:12px; color:#FF0000"<strong>DADOS PERSONALIZADOS - HSBC</strong></div><hr />
+                        ]]></comment>
+						</formatacao_nosso_numero>
+						<codigo_cedente translate="label">
+							<label>Código do Cedente</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>37</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>HSBC - Código do Cedente (Somente 7 digitos)</comment>
+						</codigo_cedente>
+					</fields>
+				</boleto_bancario>
+			</groups>
+		</payment>
+	</sections>
+</config>

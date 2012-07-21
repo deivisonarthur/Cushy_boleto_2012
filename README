@@ -1,0 +1,41 @@
+Cushy_boleto_2012
+=================
+
+Cushy boleto para Magento 1.7
+=================
+Funciona 100% com os principais bancos: 
+--Banco do Brasil
+--Bradesco
+--Caixa Economica Federal (normal e Sinco)
+--HSBC
+--Itaú
+--Santander
+--Sudameris
+
+
+Tutorial (passo a passo)
+=================
+http://www.deivison.com.br/blog/2012/06/19/boletos-bancario-com-cushy-para-magento-1-7-free
+
+Meu Blog com outras dicas
+=================
+http://www.deivison.com.br
+
+Meus contatos e solicitacao de orcamentos
+=================
+deivison.arthur@gmail.com
+skype: deivisonarthur
+
+Creditos:
+=================
+--Baseado no script PHP Boleto
+  (http://phpboleto.sourceforge.net/)
+
+--Componente Cushy_boleto para Magento 1.4 de Renan Gonçalves
+  (http://code.google.com/p/cushy-mage/)
+
+--Editado para Magento 1.5 até 1.6 por Rafael Camargo
+  (http://www.magentocommerce.com/boards/viewthread/282398)
+
+--Revisado para o Magento 1.7 por Deivison arthur
+  (http://www.deivison.com.br/blog/2012/06/19/boletos-bancario-com-cushy-para-magento-1-7-free)

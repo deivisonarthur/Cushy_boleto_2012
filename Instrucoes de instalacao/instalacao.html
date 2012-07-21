@@ -1,0 +1,545 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Tutorial Módulo boleto Magento</title>
+<style type="text/css">
+body { 
+    background: #FFFFFF; 
+}
+body, table {
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	text-align: left;
+	font-size: 11px;
+    padding: 50px;
+}
+
+table.none td.btCell { background-color: #fff; vertical-align: top; }
+table.none tr.highlight td.btCell { background-color: #f5f5f5; vertical-align: top; }
+table.none th.btHead { background-color: #e5e5e5; vertical-align: top; }
+table.btHeader, th.btHeader {
+	background-color: #014f9d; 
+	color: #fff;
+	text-align: left;
+	vertical-align: top;
+}
+table.btHeaderProminent, th.btHeaderProminent {
+	background-color: #9d0119; 
+	color: #fff;
+	text-align: left;
+	vertical-align: top;
+}
+div.showHideIndent { margin-left: 14px; }
+td.left, th.left, th.syntaxLanguage { vertical-align: top; text-align: left; border-right: 1px solid #ceced8; border-bottom: solid 1px #ceced8; }
+th.noborder { border: none; }
+th.border { border: 1px solid #ceced8; }
+td.border { border-bottom: 1px solid #ceced8; } 
+th.syntaxLanguage { font-size: 11px; line-height: 13px; vertical-align: top; }
+.faq, .property { color: #000090; }
+.method { color: #009000; }
+.event { color: #900000; }
+
+table.default th.syntaxLanguage { font-size: 0.7em; vertical-align: baseline; }
+.small { font-size: 85%; line-height: 120%; }
+
+a {
+	color: #000090;
+	
+}
+
+div.maintutorial {
+  border-width: thin;
+  border-color: #0066ff;
+}
+
+.source {
+  border-width: thin;
+  border-style: dashed;
+  border-color: #8899dd;
+  margin: 1em;
+  padding: 0.5em;
+}
+
+*[class="src-code"], *[class="listing"], *[class="php"] { line-height : 0.5em }
+
+
+.var-type {
+  font-style : italic;
+}
+
+.var-title {
+  margin-left : 20px;
+}
+
+.method-summary {
+  margin-left : 20px;
+}
+
+/*------------------------------------------------------------------------------
+    Show/Hide blocks
+------------------------------------------------------------------------------*/
+
+.shown { display: inline; }
+.hidden { display: none; }
+img.showHideImg, .showHideControl { cursor: hand; }
+img.showHideImg { margin-right: 3px; }
+
+.showHideActionText
+{
+  font-size: 0.7em;
+}
+
+.showHideActionTextContent
+{
+  font-weight: bold;
+}
+
+.showHideActionTextContentHover
+{
+  text-decoration: underline;
+  font-weight: bold;
+  background-color: #ceced8;
+}
+ol { 
+	margin: 0.2em 0em 0.2em 24px; 
+	padding: 0em; 
+}
+ul li { 
+	margin: 0.2em 0em 0.2em 0em; padding: 0em; 
+	list-style-position: outside; 
+	list-style-type: square; 
+}
+span.li { 
+	color: #000000; 
+}
+ul { 
+	color: #014fbe; 
+	margin: 3px 0em 3px 16px; 
+}
+p { 
+	margin: 6px 0em 6px 0em; 
+}
+h1 { margin: 1em 0em 1.2em 0em; font-size: 160%; line-height: 130%;}
+h2 { font-size: 140%; line-height: 120%;}
+h1, h2, h3, h4 {
+	padding: 0em;
+	margin: 1.5em 0em .25em 0em;
+	font-weight: normal;
+}
+h3 { margin-top: 0.5em; font-size: 110%; }
+h4 { margin:  0.25em 0em .25em 0em;;  font-size: 100%; }
+
+.Headline {
+    color: #000000;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-size: 9pt;
+    font-weight: bold;
+    font-style: normal;
+/*    margin-left : -1.5em;*/
+    text-align : left;
+    margin-top : 1.0em;
+    margin-bottom : 0.5em;
+}
+
+.HelpContent {
+    margin-left : 1.5em;
+}
+
+table.HelpTable {
+	border:			0px;
+	padding:		0px;
+	margin:			0px;
+}
+
+tr.HelpTable {
+}
+
+th.HelpTable {
+	border:					1px dotted;
+	background-color:		#F0F0F0;
+	margin:					1px;
+	padding:				5px;
+}
+
+td.HelpTable {
+	border:			1px dotted;
+	background-color:		#F9F9F9;
+	margin:			1px;
+	padding:				5px;
+}
+
+pre.depreciated {
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-size: 9pt;
+	border:			1px dotted #909090;
+	background-color:		#F0F0F0;
+	margin-left:			10px;
+	margin-right:			10px;
+	margin-top:			10px;
+	margin-bottom:			10px;
+	padding:				5px;
+}
+
+/*------------------------------------------------------------------------------
+    webfx-tree
+------------------------------------------------------------------------------*/
+.webfx-tree-container {
+	margin: 0px;
+	padding: 0px;
+	font: icon;
+	white-space: nowrap;
+}
+
+.webfx-tree-item {
+	padding: 0px;
+	margin: 0px;
+	font: icon;
+	color: black;
+	white-space: nowrap;
+}
+
+.webfx-tree-item a, .webfx-tree-item a:active, .webfx-tree-item a:hover {
+	margin-left: 3px;
+	padding: 1px 2px 1px 2px;
+}
+
+.webfx-tree-item a {
+	color: black;
+	text-decoration: none;
+}
+
+.webfx-tree-item a:hover {
+	color: blue;
+	text-decoration: underline;
+}
+
+.webfx-tree-item a:active {
+	background: highlight;
+	color: highlighttext;
+	text-decoration: none;
+}
+
+.webfx-tree-item img {
+	vertical-align: middle;
+	border: 0px;
+}
+
+.webfx-tree-icon {
+	width: 16px;
+	height: 16px;
+}
+
+
+.tute-tag { color: #009999 }
+.tute-attribute-name { color: #0000FF }
+.tute-attribute-value { color: #0099FF }
+.tute-entity { font-weight: bold; }
+.tute-comment { font-style: italic }
+.tute-inline-tag { color: #636311; font-weight: bold }
+fieldset{
+	border-color: #333333;
+	border-style: solid;
+	border-width: 1px;
+	padding: 5px;
+}
+legend{
+	background-color: #FFFFCC;
+	text-align: center;
+	border-color: #666666;
+	border-style: solid;
+	border-width: 1px;
+	font-weight: bold;
+	padding: 2px;
+}
+.doc_headline{
+	font-size: 14px;
+	color: #990000;
+	font-weight: bold;
+}
+textarea{
+	font-size: 11px;
+	font-family: "Courier New", Courier, mono;
+	background-color: #E5E5E5;
+	border-color: #333333;
+	border-style: solid;
+	border-width: 1px;
+}
+.style4 {color: #FFFFFF}
+.style5 {
+	font-size: 18px;
+	color: #FF0000;
+}
+</style>
+</head>
+
+<body>
+<center>
+    <h1 style="font-size: 40px">Deivison Arthur</h1>
+    <h1>Tutorial de Instalação do Módulo Boleto Bancário para Magento</h1>
+    <p align="center" class="style2 style5">Baseado no tutorial: http://www.magentocommerce.com/boards/viewthread/282398</p>
+    <a href="http://www.deivison.com.br/demos/todos-boletos-magento_1.7/modulo_boleto_magento_free_funcionando_ate_magento_1.7.rar" target="_blank"><h1>Download do módulo e documentação</h1></a>
+    <br />
+</center>
+                <p>&nbsp;  </p>
+                <fieldset>
+                <legend class="style2">Funcionalidades </legend>
+              <p> - Funciona com os principais bancos: BB, Bradesco, CEF (normal e Sinco), HSBC, Itaú, Santander e Sudameris.</p>
+                <p>- Tudo configurado facilmente via Admin, inclusive dados personalizados de alguns bancos.</p>
+                <p>- Número do pedido nas instruções do boleto caso desejado.</p>
+                <p>- Link do boleto na página Success.</p>
+                <p>- Escolha do novo status para os pagamentos recebidos através do módulo.</p>
+                <p>- 2ª via  cliente e  Admin apenas caso o pagamento seja via boleto e ainda não tenha sido alterado o status padrão.</p>
+                <p>- Link do boleto por email apenas caso o pagamento seja via boleto.</p>
+                <p>&nbsp;</p>
+</fieldset>
+<br /><br />
+<a href="imagens/boleto3.jpg" target="_blank"><img src="imagens/boleto3thumb.jpg" border="0" /></a><a href="imagens/boleto1.jpg" target="_blank"><img src="imagens/boleto1thumb.jpg" alt="Tela Cliente" width="200" height="124" border="0" /></a><a href="imagens/boleto2.jpg" target="_blank"><img src="imagens/boleto2thumb.jpg" border="0" /></a>
+  <a href="imagens/boleto5.jpg" target="_blank"><img src="imagens/boleto5thumb.jpg" width="200" height="125" border="0" /></a><a href="imagens/boleto6.jpg" target="_blank"><img src="imagens/boleto6thumb.jpg" border="0" /></a><a href="imagens/boleto4.jpg" target="_blank"><img src="imagens/boleto4thumb.jpg" width="200" height="125" border="0" /></a>
+<p align="center" class="style4">&nbsp;</p>
+<p align="center" class="style4">Baseado no módulo Crushy_boleto de Renam</p>
+<fieldset><legend class="style2">Atenção</legend>
+ <p><br>
+   Faça Backup de toda sua loja e de sua base de dados antes de iniciar qualquer instalação, caso ocorra qualquer problema você poderá restaurar rapidamente seus arquivos, não me responsabilizo por perdas e danos recorrente a instalação do módulo.</p>
+ <p>Procure instalar localmente ou em uma loja teste antes de efetivamente instalar em sua loja principal.</p>
+ <p>&nbsp;</p>
+</fieldset>                               <br /><br />
+                <fieldset>
+                <legend class="style2">Notas da Versão </legend>
+                <p><br />
+                  Baseado no original Cushy_boleto de Renan Gonçalves, utilizando o projeto boleto PHP, desenvolvido por Rafael Camargo (<a href="mailto:desbloqueio@terra.com.br">desbloqueio@terra.com.br</a>)</p>
+                <p style="text-decoration: line-through">Testado no Magento 1.7.0.0, apenas localmente utilizando o Xamp, pois minha loja ainda não está online, não sei se funciona corretamente em outras versões, com certas limitações de alguns hosts e etc, realize seus testes e boa sorte, nas condições citadas o módulo apresentou um perfeito funcionamento.</p>
+                <p style="color: red"><strong>Após testar online na versão do magento 1.7, o mesmo tinha apresentando alguns erros de versão. Sempre que houver um comentário HTML assim <-- Deivison --> foi porque alterei o código.</strong></p>
+                <p>&nbsp;</p>
+                </fieldset>
+
+                <p>&nbsp;</p>
+                <fieldset>
+<legend>Instalação</legend>
+<p>1º -Dentro da pasta Arquivos de instalação copie e cole pastas:<span class="property"> app</span> e <span class="property">skin</span>  para a raiz sua instalação magento, mesclando com seus arquivos.</p>
+<p>&nbsp;</p>
+<p style="color: red; font-size: 24px" >Adicionando o link da segunda via do boleto no seu admin</p>
+<p>2º - Abra o arquivo <span class="property">app/design/adminhtml/default/default/template/sales/order/view/tab/info.phtm</span>l, procure por volta da linha 40 o seguinte código:</p>
+<p><br />
+  <span class="method">&lt;h4 class=&quot;icon-head head-payment-method&quot;&gt;&lt;?php echo Mage::helper('sales')-&gt;__('Payment Information') ?&gt;&lt;/h4&gt;</span></p>
+<p>&nbsp;</p>
+<p>Coloque logo abaixo:</p>
+
+</fieldset>
+  <textarea cols="240" rows="15" name="profile">
+<!-- Deivison -->
+<!-- Impressão do admin -->
+<?php // segunda via do boleto
+if ((strpos($this->getPaymentHtml(), "Boleto")  !== false) && ( $_order->getStatus() == $this->__(Mage::getStoreConfig('payment/boleto_bancario/order_status')) )) {
+			$orderid = $_order->getId();
+			echo "<span style=\"float:right\">";
+			echo "<a style=\"color:#ffb81e\" href=\"" . $this->getUrl('boleto/standard/adminView/order_id/' . $orderid) . "\" class=\"link-cart\" onclick=\"this.target='_blank'\">" . $this->__('Gerar 2a Via do Boleto') . "</a></span>";
+
+			} //  segunda via do boleto ?>
+<!-- Deivison -->
+</textarea>
+<fieldset>
+<p>&nbsp;</p>
+<p style="color: red; font-size: 24px" >Adicionando o link do boleto no envio do email que vai para o cliente</p>
+<p>5º - Abra o arquivo <span class="property">/app/locale/pt_BR/template/email/sales/order_new.phtml</span>, que é o template de email padrão para novas compras, procure pelo seguinte código:</p>
+<p class="method">{{var payment_html}}</p>
+<p class="method">&nbsp;</p>
+<p>Coloque logo abaixo:</p>
+<p>
+   <textarea cols="90" rows="5" name="profile">
+{{block type='core/template' area='frontend' template='boletonoemail/boleto.phtml' order=$order}}
+ </textarea>
+</p>
+
+<p>&nbsp;</p>
+<p style="color: red; font-size: 24px" >Adicionando o link da segunda via do boleto no painel de pedidos do cliente</p>
+<p>6º - Abra o arquivo <span class="property">/app/design/frontend/SUA-TEMPLATE/default/template/sales/order/info.phtml</span> perto da linha 106 terá a linha <p class="method"><?php echo $this->getPaymentInfoHtml() ?></p></p><br />
+<p>Coloque logo abaixo:</p>
+</fieldset>
+<p>
+  <textarea cols="240" rows="20" name="profile">
+                <!-- Deivison -->
+                <!-- Impressão do usuário -->
+                <?php
+                  // Tava assi: $this->getPaymentInfoHtml() alterado para assim: $this->getPaymentInfoHtml()
+
+                  //if ((strpos($this->getPaymentInfoHtml(), "Boleto")  !== false) && ( $_order->getStatus() == $this->__(Mage::getStoreConfig('payment/boleto_bancario/order_status')) )) {
+
+                  //Deivison Arthur - deivison.com.br
+                  //veja mais sobre strpos em http://br.answers.yahoo.com/question/index?qid=20100221162434AAdk34n
+
+                      if (  (strpos($this->getPaymentInfoHtml(), "Boleto")  !== false)  && $_order->getStatus() == "pending"   ) {
+                    			$orderid = $_order->getId();
+                    			echo "<span style=\"float:left\">";
+                    			echo "<a style=\"color:#ffb81e\" href=\"" . $this->getUrl('boleto/standard/view/order_id/' . $orderid) . "\" class=\"link-cart\" onclick=\"this.target='_blank'\">Clique aqui para imprimir o Boleto</a></span>";
+
+                      }
+                ?>
+                <!-- Deivison -->
+  </textarea>
+</p>
+
+
+
+
+<fieldset>
+<p style="color: red; font-size: 24px" >Adicionando o link do boleto na tela de sucesso do cliente</p>
+<p>6º - Abra o arquivo <span class="property">/app/design/frontend/<strong>BASE</strong>/default/template/checkout/success.phtml</span> </p>
+<p>Obs: As vezes o arquivos de sucesso se encontra na sua theme ao inves da theme BASE</p><br />
+<p>Coloque logo abaixo:</p>
+</fieldset>
+<p>
+  <textarea cols="240" rows="20" name="profile">
+                <!-- Deivison -->
+                <?php
+
+                $orderId = Mage::getSingleton('checkout/session')->getLastRealOrderId();
+                Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
+                $order = Mage::getModel('sales/order')->loadByIncrementId($orderId);
+
+
+                    if($order->getPayment()->getMethod() == "boleto_bancario"):  /*caso tenha cido escolhido boleto como meio de pagamento exibe o botão abaixo*/
+                ?>
+                    <br /><br /><br /><br /><br />
+                    <center>
+                        <button type="button" class="button" title="Clique aqui para imprimir o Boleto" onclick="window.open('<?=$this->getUrl('boleto/standard/view/order_id/'.$order->getId())?>','_blank')"><span><span>Clique aqui para imprimir o Boleto</span></span></button>
+                    </center>
+                    <br /><br /><br /><br /><br /><br />
+                <?php
+                    endif;
+                ?>
+                <!-- Deivison -->
+  </textarea>
+</p>
+
+
+
+
+<fieldset>
+<p>Isso irá adicionar o link de impressão do boleto no email enviado para o cliente caso o pagamento seja via boleto, caso você utilize um template personalizado coloque esse código diretamente no template, coloque o código nos templates que desejar.</p>
+<p>&nbsp;</p>
+<p>6º - Na pasta <span class="method">skin/boletophp/imagens</span> , procure pelo arquivo<span class="property"> logo_empresa.png </span>e substitua pelo logo de sua empresa.</p>
+<p>&nbsp;</p>
+<p style="color: red; font-size: 24px" >Para funcionar tem que desabilitar o Compilador do Magento</p>
+<p>7º -  Até o presente momento esse componente só funciona com o <strong>system/tools/compilation</strong> desligado, ou seja, a solução então é desligar o system/tools/compilation</p>
+<p>&nbsp; </p>
+<p style="color: red; font-size: 24px" >Para não apresentar o erro ao entrar em meios de pagamentos na adm</p>
+<p>8º -  Ao entrar em métodos de pagamentos na administração do Magento, provavelmente ele apresentará o erro: <span class="property">Fatal error: Call to a member fun in app/code/core/Mage/Adminhtml/Block/System/Config/Form.php on line 427</span></p>
+<p>&nbsp; </p>
+É necessário trocar parte do código que esta em  <span class="property">app/code/core/Mage/Adminhtml/Block/System/Config/Form.php on line 427</span>
+<p>&nbsp; </p>
+<p style="font-size: 18px">como no tutorial em <a href="http://www.9764.in/Index/read/qid/302835" target="_blank">http://www.9764.in/Index/read/qid/302835</a></p>
+<p>&nbsp; </p>
+</fieldset>
+<p>Coloque logo abaixo:</p>
+<p>
+  <textarea cols="240" rows="50" name="profile">
+                <!-- Deivison -->
+                /* Original comentado
+                if ($e->source_model) {
+                    // determine callback for the source model
+                    $factoryName = (string)$e->source_model;
+                    $method = false;
+                    if (preg_match('/^([^:]+?)::([^:]+?)$/', $factoryName, $matches)) {
+                        array_shift($matches);
+                        list($factoryName, $method) = array_values($matches);
+                    }
+
+                    $sourceModel = Mage::getSingleton($factoryName);
+                    if ($sourceModel instanceof Varien_Object) {
+                        $sourceModel->setPath($path);
+                    }
+                    if ($method) {
+                        if ($fieldType == 'multiselect') {
+                            $optionArray = $sourceModel->$method();
+                        } else {
+                            $optionArray = array();
+                            foreach ($sourceModel->$method() as $value => $label) {
+                                $optionArray[] = array('label' => $label, 'value' => $value);
+                            }
+                        }
+                    } else {
+                        $optionArray = $sourceModel->toOptionArray($fieldType == 'multiselect');
+
+                    }
+                    $field->setValues($optionArray);
+                }
+                */
+
+                /*Colocar esse no lugar*/
+                if ($e->source_model) {
+                  $sourceModel = Mage::getSingleton((string)$e->source_model);
+                  if ($sourceModel instanceof Varien_Object) {
+                        $sourceModel->setPath($path);
+                  }
+                  if(is_object($sourceModel)){
+                        $field->setValues($sourceModel->toOptionArray($fieldType == 'multiselect'));
+                  } else {
+                        Mage::log($e->source_model);
+                  }
+                }
+                <!-- Deivison -->
+  </textarea>
+</p>
+
+<fieldset>
+<p>&nbsp; </p>  <p>&nbsp; </p>  
+<p>9º - Limpe o cache da loja para poder visualizar o módulo e poder realizar suas configurações.</p>
+<p>&nbsp;</p>
+<p>10º -  Agora é só configurar o módulo com suas informações no admin da loja na parte <span class="property">Formas de Pagamento</span>, a configuração do módulo é bem auto explicativa, consulte seu banco pelos dados que deve utilizar e preencha com atenção todos os campos.</p>
+<p>&nbsp; </p>
+<br />
+<center><p style="color: red; font-size: 32px" >Pronto FIM!</p></center>
+<p></p>
+
+</fieldset>
+<br /><br />
+<fieldset>
+                <legend>Passo Opcional</legend>
+                <br>
+                <p> Esse passo é opcional, mas é muito útil. Um dos grandes problemas do Magento com alguns boletos, como do Itaú e o da Caixa, é que esses bancos limitam o número do boleto em 8 digitos.</p>
+                <p>O script desses boletos já estão modificados para pegarem apenas os 8 primeiros digitos do número do seu pedido, para não dar erro na gerão do boleto, EX: número do pedido 100000089, nesses boletos aparecerão como 00000089, com certeza você conseguirá identificar do mesmo jeito, mas como tem muito zero nesse pedido magento, caso você queira mudar isso vá no seu PHP admin para diminuir esse campo de digitos, no seu banco de dados e procure pela tabela:</p>
+                <p>&nbsp;</p>
+                <p><span class="property">eav_entity_store</span> , por lá você encontrará as outras (<span class="property">entity_store_id, entity_type_id, store_id, <br />
+                  increment_prefix, increment_last_id</span>), por ai você consegue alterar o número do pedido na tabela <span class="property">increment_last_id</span> e consegue mudar o prefixo que no caso é aquele número 1 que aparece no inicio da númeração na <span class="property">increment_prefix</span></p>
+                <p>Para efetivamente alterar a quantidade de digitos, na tabela<span class="property"> eav_entity_type</span>, procure pelo<span class="property"> entity_type_id 5 ORDER</span>, clique em editar e mude a <span class="property">increment_pad_length</span> de 8 para um número menor que julgue de acordo com sua necessidade, lembrando que caso tenha deixado o <span class="property">increment_prefix</span> com algum número, sempre sua númeração ficará com aquele digito a mais na frente, mesmo que alterado o <span class="property">increment_pad_length</span> para 5, seu número de pedido ficará com 6 digitos, se deixar essa parte vazia ai fica exatamente com o número que você deixar na opção <span class="property">increment_pad_length</span>.</p>
+                <p>Você também já pode fazer isso para os campos INVOICE E CREDIMEMO e etc, já para deixar no mesmo padrão.</p>
+                <p><a href="imagens/phpadmin1.jpg" target="_blank"><img src="imagens/phpadmin1thumb.jpg" width="200" height="125" border="0" /></a><a href="imagens/phpadmin2.jpg" target="_blank"><img src="imagens/phpadmin2thumb.jpg" width="200" height="125" border="0" /></a><a href="imagens/phpadmin3.jpg" target="_blank"><img src="imagens/phpadmin3thumb.jpg" width="200" height="125" border="0" /></a></p>
+                <p>Imagens apenas para referência, nessas a modificação de númeração já está realizada</p>
+<p>&nbsp;</p>
+                </fieldset>
+                <fieldset>     <br /><br />
+                <legend>Dicas</legend>
+                <p><br>
+                </p>
+                <p>- Após toda configuração realizada faça um teste fazendo a simulação do pagamento através do seu bankline mesmo, para ver se o código é validado com sucesso, chegando até a parte antes de efetivamente colocar a senha, pois se houver qualquer problema normalmente já avisa que o boleto não é válido, no caso de qualquer problema verifique se não faltou preenchimento de algum dado ou se não há algo preenchido indevidamente.</p>
+                <p>&nbsp;</p>
+                <p>- Caso o código seja validado, emita dois boletos de valor simbólico e pague em 2 bancos diferentes para ver se compensa corretamente em sua conta.</p>
+                <p>&nbsp;</p>
+                <p>- Tenha cuidado com questão de alteração da númeração do pedido da loja para não calhar de emitir boleto com númeração repitida, pode dar problema com alguns bancos.</p>
+                <p>&nbsp;</p>
+                <p>- Alguns arquivos do boletophp estão modificados para funcionar de acordo com a necessidade do módulo, cuidado com atualizações futuras do grupo boletophp, pois se você pegar arquivos atualizados e apenas substituir os arquivos você terá problemas.</p>
+                <p>&nbsp;</p>
+                <p>
+                  <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
+                </p>
+                <div align="center">
+                  <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
+                </div>
+</fieldset>
+                        <br /><br />
+ <fieldset>
+                <legend>Gostou do módulo?</legend>
+ <p><br>
+                Se você gostou, se foi útil para você, se fez você economizar aquela grana pois estava prestes a pagar caro por aquele módulo pago, pois não achava um solução gratuita que te atendesse e queira prestigiar o trabalho feito efetuando uma doação de qualquer valor, não vou negar e vou ficar grato, você pode fazer isso utilizando o Pagseguro no botão abaixo:
+                <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
+</p>
+                <div align="center"><form target="pagseguro" action="https://pagseguro.uol.com.br/checkout/v2/donation.html" method="post">
+<input type="hidden" name="receiverEmail" value="2ds@deivison.com.br" />
+<input type="hidden" name="currency" value="BRL" />
+<input type="image" src="https://p.simg.uol.com.br/out/pagseguro/i/botoes/doacoes/209x48-doar-laranja-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
+</form>
+<!-- FINAL FORMULARIO BOTAO PAGSEGURO --></div>
+</fieldset>
+
+</body>
+</html>
