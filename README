@@ -24,6 +24,16 @@ Tutorial (passo a passo)
 =================
 http://www.deivison.com.br/blog/2012/06/19/boletos-bancario-com-cushy-para-magento-1-7-free
 
+Gist no Github das etapas do tutorial
+=================
+01 - https://gist.github.com/3156396 [Link no admin]
+02 - https://gist.github.com/3156440 [Link no email]
+03 - https://gist.github.com/3156524 [Link no painel do cliente]
+04 - https://gist.github.com/3156527 [Link de print na tela de sucesso]
+05 - https://gist.github.com/3156529 [Não apresentar error tela adm]
+06 - https://gist.github.com/3105289 [O htacces]
+
+
 Meu Blog com outras dicas
 =================
 http://www.deivison.com.br
