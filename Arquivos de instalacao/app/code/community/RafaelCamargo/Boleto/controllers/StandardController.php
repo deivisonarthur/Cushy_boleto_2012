@@ -34,7 +34,18 @@ $nomebanco = Mage::getStoreConfig('payment/boleto_bancario/banconome');
 			include $path . 'layout_' . $nomebanco . '.php';
 		$content = ob_get_clean();
 
-		$url = preg_replace('/index\.php\/$/', '', Mage::getUrl('/')) . 'skin/boletophp/';
+		//Fix by Hernandes Benevides de Sousa - Issue #2 Projeto Cushy
+		//$url = preg_replace('/index\.php\/$/', '', Mage::getUrl('/')) . 'skin/boletophp/'; //old code
+		if(Mage::app()->getStore()->isCurrentlySecure()){
+
+			$skinUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN, true); //true para secure
+		}
+		else{
+			$skinUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);
+		}
+		$url = $skinUrl . 'boletophp/';
+		//endof Fix
+		
 		$content = str_ireplace(array('src=imagens', 'src="imagens'), array('src=' . $url . 'imagens', 'src="' . $url . 'imagens'), $content);
 		$content = str_ireplace('<body', '<body onload="window.print();"', $content);
 
