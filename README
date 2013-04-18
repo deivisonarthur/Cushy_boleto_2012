@@ -1,3 +1,39 @@
+
+Atualização Ultimate Plus Final Omega 2013 do Cushy Boleto!!!
+=================
+
+Visite o link do git https://github.com/deivisonarthur/Modgit-Cushy-DeivisonArthur-v2
+
+Existe um Git que tenho que antes estava como privado com o módulo atualizado, onde graças a toda essa bagunça, esta cada vez ficando mais legal o source. As melhorias foram:
+
+*Esse módulo do Cushy funciona a admin com o compilador ligado!
+*O layout layout_cef.php da Caixa Economica foi atualizado!
+*Add o botão de impressão na tela de sucesso!
+*Add o link de impressão do boleto na admin!
+
+O único passo que precisa ser feito na mão, é esse:
+
+*Para adicionar o link de impressão da 2 via do boleto, edite o arquivo /app/locale/pt_BR/template/email/sales/order_new.phtml, que é o template de email padrão para novas compras, procure por:
+
+{{var payment_html}}
+
+Coloque abaixo dele:
+
+{{block type=’core/template’ area=’frontend’ template=’boletonoemail/boleto.phtml’ order=$order}}
+
+Assim irá add o link de impressão do boleto no email enviado para o cliente caso o pagamento seja via boleto.
+
+
+Importante! Novo módulo de boleto (rs é sério)
+=================
+
+Novo módulo de boleto feito pelo Felipe da Maxima e contribuição minha. Esse módulo esta incrível! Pois aceita o arquivo de retorno CNAB coisa que só os gateways fazem. E esta todo escrito em POO utilizando o PhpBoleto POO. Ou seja, esse ai não tem nada haver com o módulo do Cushy pois foi feito do zero com base somente no Phpboleto POO.
+
+Segue links para contribuições: http://magento-maxima-boleto.googlecode.com/svn/trunk/
+
+
+
+
 Cushy_boleto_2012
 =================
 
@@ -8,7 +44,7 @@ Funciona 100% com os principais bancos:
 --Bradesco
 --Caixa Economica Federal (normal e Sinco)
 --HSBC
---Ita�
+--Ita�
 --Santander
 --Sudameris
 
@@ -30,7 +66,7 @@ Gist no Github das etapas do tutorial
 02 - https://gist.github.com/3156440 [Link no email]
 03 - https://gist.github.com/3156524 [Link no painel do cliente]
 04 - https://gist.github.com/3156527 [Link de print na tela de sucesso]
-05 - https://gist.github.com/3156529 [N�o apresentar error tela adm]
+05 - https://gist.github.com/3156529 [N�o apresentar error tela adm]
 06 - https://gist.github.com/3105289 [O htacces]
 
 
@@ -48,10 +84,10 @@ Creditos:
 --Baseado no script PHP Boleto
   (http://phpboleto.sourceforge.net/)
 
---Componente Cushy_boleto para Magento 1.4 de Renan Gon�alves
+--Componente Cushy_boleto para Magento 1.4 de Renan Gon�alves
   (http://code.google.com/p/cushy-mage/)
 
---Editado para Magento 1.5 at� 1.6 por Rafael Camargo
+--Editado para Magento 1.5 at� 1.6 por Rafael Camargo
   (http://www.magentocommerce.com/boards/viewthread/282398)
 
 --Revisado para o Magento 1.7 por Deivison arthur
