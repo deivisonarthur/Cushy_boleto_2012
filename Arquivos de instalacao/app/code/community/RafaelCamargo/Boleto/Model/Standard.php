@@ -16,16 +16,28 @@
  */ 
 class RafaelCamargo_Boleto_Model_Standard extends Mage_Payment_Model_Method_Abstract {
 protected $_code = 'boleto_bancario';
+	
 	public function prepareValues() {
+		
 		$order = Mage::registry('current_order');
 		$address = $order->getBillingAddress();
+		
+		// Recuperando Data da compra
+		$dataCompra = $order->getCreatedAt();
+		list($data,$hora) = explode(' ',$dataCompra);
+		list($ano,$mes,$dia) = explode('-',$data);
+		$dataAtual = $dia.'/'.$mes.'/'.$ano;
+		
 		// Valores padrão
 		$default = array(
 			'nosso_numero' => $order->getIncrementId(),
 			'numero_documento' => $order->getIncrementId(),
-			'data_vencimento' => date('d/m/Y', time() + (Mage::getStoreConfig('payment/' . $this->_code . '/vencimento') * 86400)),
-			'data_documento' => date('d/m/Y'),
-			'data_processamento' => date('d/m/Y'),
+			//Data da compra somado com os dias do vencimaneto
+			'data_vencimento' => date('d/m/Y', strtotime($data. ' + '.(Mage::getStoreConfig('payment/'.$this->_code.'/vencimento' )).' days')),
+			//Data da compra
+			'data_documento' => $dataAtual,
+			//Data da compra
+			'data_processamento' => $dataAtual,
 			'valor_boleto' => number_format($order->getGrandTotal() + Mage::getStoreConfig('payment/' . $this->_code . '/valor_adicional'), 2, ',', ''),
 			'valor_unitario' => number_format($order->getGrandTotal() + Mage::getStoreConfig('payment/' . $this->_code . '/valor_adicional'), 2, ',', ''),
 			'sacado' => $address->getFirstname() . ' ' . $address->getLastname(),
